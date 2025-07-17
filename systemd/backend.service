@@ -1,2 +1,13 @@
 [Unit]
-Description=Backend Service
+Description=Backend System Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/backend-system/python/backend_module/main.py
+WorkingDirectory=/opt/backend-system/
+Restart=always
+User=backenduser
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
