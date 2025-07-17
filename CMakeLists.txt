@@ -18,7 +18,7 @@ FetchContent_MakeAvailable(pybind11)
 
 # Define the Python module using pybind11
 pybind11_add_module(backend_module
-    bindings/pybackend.cpp
+    bindings/bindings.cpp
 )
 
 # Include directories for your backend source
