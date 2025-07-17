@@ -1,3 +1,11 @@
 groups:
-  - name: backend_alerts
-    rules: []
+  - name: backend-alerts
+    rules:
+      - alert: HighQueueSize
+        expr: queue_current_size > 100
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Queue size is high"
+          description: "Queue size has exceeded 100 for more than 1 minute"
