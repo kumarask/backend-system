@@ -5,11 +5,12 @@ import os
 import subprocess
 import setuptools
 
-class CMakeExtension(setuptools.Extension):
-    def __init__(self, name, sourcedir=''):
-        super().__init__(name, sources=[])
-        self.sourcedir = sourcedir
 
+class CMakeExtension(Extension):
+    def __init__(self, name, source_dir='base'):  # Point to 'base'
+        super().__init__(name, sources=[])
+        self.source_dir = os.path.abspath(source_dir)
+        
 class CMakeBuild(build_ext):
     def run(self):
         for ext in self.extensions:
@@ -54,7 +55,7 @@ setup(
         'uvicorn',
         'prometheus_client',
     ],
-    ext_modules=[CMakeExtension('backend_cpp')],
+    ext_modules=[CMakeExtension('backend', source_dir='base')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
 )
