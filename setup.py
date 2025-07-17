@@ -2,6 +2,7 @@ from setuptools import setup, find_packages
 from setuptools.command.build_ext import build_ext
 import sys
 import os
+import subprocess
 import setuptools
 
 class CMakeExtension(setuptools.Extension):
@@ -11,9 +12,6 @@ class CMakeExtension(setuptools.Extension):
 
 class CMakeBuild(build_ext):
     def run(self):
-        import subprocess
-        import os
-
         for ext in self.extensions:
             self.build_cmake(ext)
 
