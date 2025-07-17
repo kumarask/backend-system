@@ -1,1 +1,47 @@
-{}
+{
+  "dashboard": {
+    "id": null,
+    "title": "Backend System Metrics",
+    "panels": [
+      {
+        "type": "gauge",
+        "title": "Queue Size",
+        "targets": [
+          {
+            "expr": "queue_current_size",
+            "format": "time_series"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "none",
+            "min": 0
+          }
+        }
+      },
+      {
+        "type": "timeseries",
+        "title": "Messages Produced",
+        "targets": [
+          {
+            "expr": "messages_produced"
+          }
+        ]
+      },
+      {
+        "type": "timeseries",
+        "title": "Messages Consumed",
+        "targets": [
+          {
+            "expr": "messages_consumed"
+          }
+        ]
+      }
+    ],
+    "refresh": "5s",
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    }
+  }
+}
