@@ -14,7 +14,7 @@ COPY . .
 
 # Install Python dependencies & build bindings
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install -r python/backend_module/requirements.txt
+RUN pip install -r requirements.txt
 RUN python setup.py build_ext --inplace bdist_wheel
 
 # Stage 2: Runtime image
