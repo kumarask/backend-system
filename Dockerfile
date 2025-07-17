@@ -1,5 +1,3 @@
-// File: Dockerfile
-
 # Stage 1: Build C++ and Python bindings
 FROM python:3.10-slim AS builder
 
