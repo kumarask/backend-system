@@ -27,10 +27,7 @@ class CMakeBuild(build_ext):
         ]
 
         build_args = ['--target', 'backend_module']
-
-        if os.path.exists(os.path.join(self.build_temp, 'CMakeLists.txt')):
-            os.remove(os.path.join(self.build_temp, 'CMakeLists.txt'))
-            os.makedirs(self.builf_temp, exist_ok=True)
+        os.makedirs(self.builf_temp, exist_ok=True)
 
         subprocess.check_call(
             ['cmake', ext.source_dir] + cmake_args,
