@@ -10,12 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy all files
-COPY . .
+COPY . /app
 
 # Install Python dependencies & build bindings
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
-RUN python setup.py bdist_wheel
+RUN python setup.py build_ext --inplace bdist_wheel
 
 # Stage 2: Runtime image
 FROM python:3.10-slim
