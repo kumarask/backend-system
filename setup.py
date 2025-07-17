@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 from setuptools.command.build_ext import build_ext
 import sys
+import os
 import setuptools
 
 class CMakeExtension(setuptools.Extension):
