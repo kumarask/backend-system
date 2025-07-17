@@ -120,6 +120,12 @@ sudo supervisorctl update
 
 ---
 
+🛠 Example Helm Install
+
+helm install backend ./helm/backend-chart
+
+---
+
 ## 📜 License
 
 MIT License
