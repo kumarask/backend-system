@@ -121,9 +121,9 @@ sudo supervisorctl update
 ---
 
 🛠 Example Helm Install
-
+```bash
 helm install backend ./helm/backend-chart
-
+```
 ---
 
 ## 📜 License
