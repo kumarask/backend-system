@@ -7,9 +7,9 @@ import setuptools
 
 
 class CMakeExtension(Extension):
-    def __init__(self, name, source_dir='base'):  # Point to 'base'
+    def __init__(self, name):  # Point to 'base'
         super().__init__(name, sources=[])
-        self.source_dir = os.path.abspath(source_dir)
+        self.source_dir = os.path.abspath(".")
         
 class CMakeBuild(build_ext):
     def run(self):
@@ -17,16 +17,16 @@ class CMakeBuild(build_ext):
             self.build_cmake(ext)
 
     def build_cmake(self, ext):
-        extdir = self.get_ext_fullpath(ext.name)
+        extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
         cfg = 'Release'
 
         cmake_args = [
-            f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={os.path.abspath(os.path.dirname(extdir))}",
+            f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}",
             f"-DCMAKE_BUILD_TYPE={cfg}",
             f"-DPYTHON_EXECUTABLE={sys.executable}",
         ]
 
-        build_args = ['--config', cfg]
+        build_args = ['--target', 'backend_module']
 
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
@@ -55,7 +55,7 @@ setup(
         'uvicorn',
         'prometheus_client',
     ],
-    ext_modules=[CMakeExtension('backend', source_dir='base')],
+    ext_modules=[CMakeExtension('backend_module')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
 )
