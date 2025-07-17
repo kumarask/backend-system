@@ -15,7 +15,7 @@ COPY . .
 # Install Python dependencies & build bindings
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
-RUN python setup.py build_ext --inplace bdist_wheel
+RUN python setup.py bdist_wheel
 
 # Stage 2: Runtime image
 FROM python:3.10-slim
